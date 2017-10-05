@@ -5,12 +5,12 @@ function texto(principal){
 		var question = prompt("¿Qué quieres hacer, 1)Cipher o 2)Decipher?"); //
 		if(question != ""){ //si question no es igual a un string vacio, se generará una nueva condición
 			if(question == "1"){ //si question es igual a 1 se cumple la primera funcíon por lo tanto me retorna cipher...
-				var cifrar = prompt("Escriba el texto que desea cifrar")
-				Cipher("cifrar"); 
-			} else if (question === "2") { /*si no se cumple la primera función, utilizaremos una segunda función (else if), 
+				var string = prompt("Escriba el texto que desea cifrar")
+				Cipher("string"); 
+			} else if (question == "2"){ /*si no se cumple la primera función, utilizaremos una segunda función (else if), 
 				que es igual a 2, entonces me retornaría decipher...*/
-				var decifrar = prompt("Escriba el texto que desea descifrar")
-				Decipher("decifrar");
+				var string = prompt("Escriba el texto que desea descifrar")
+				Decipher("string");
 			} else { /* y si no se cumplen las primeras dos funciones, por medio de un else me retornaría la alerta
 				"ingrese el texto nuevamente"...*/
 				alert("Ingrese el texto nuevamente");
@@ -19,57 +19,70 @@ function texto(principal){
 	} while (question == "" || (question == "1" && question == "2"));
 }
 
+function cipher(string){
+   
+       var cifrado = "";
+       var ascii = 0;
 
+       string = string.toUpperCase();
 
+       for (var i=0; i<string.length; i++){
+           ascii = string.charCodeAt(i);
+           ascii = (ascii-65-7+26)+65;
+           cifrado = cifrado + String.fromCharCode(ascii);
+       }
+           alert(cifrado);
+       }
+   
+function decipher(string){
 
+       var descifrado = "";
+       var ascii = 0;
 
+       string = string.toUpperCase();    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function cipher(text, shift=33){ //Aplicaremos la función Cipher
-	var retVal="";
-	for (var v of text) {
-		var c=v.charCodeAt(0)+shift;
-		retVal+=String.fromCharCode( (c%26)+65);
-	}
-	return retVal;
+       for (var i=0; i<string.length; i++){
+           ascii = string.charCodeAt(i);
+           
+           ascii = ((ascii-65-7+26)%26+65);
+           descifrado = descifrado + String.fromCharCode(ascii);
+       }
+       string = string.toLowerCase();
+       
+           alert(descifrado);
 }
+principal2();
 
-function decipher(text, shift=33){
-	var retVal="";
-	for (var v of text) {
-		var c=v.charCodeAt(0)-shift;
-		retVal+=String.fromCharCode( (c%26)+65);
-	}
-	return retVal;
-}
 
-console.log(cipher("ABC")+" - "+decipher("UVW"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
